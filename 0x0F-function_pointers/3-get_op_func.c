@@ -1,31 +1,27 @@
-#include <stdio.h>
 #include "3-calc.h"
-#include "string.h"
-
+#include <stddef.h>
 /**
-  * get_op_func - get opt func 
-  * @s: character 
-  *
-  * Return: function 
-  */
-
+ * get_op_func - selects function to perform
+ * @s: operator
+ * Return: function pointer
+ */
 int (*get_op_func(char *s))(int, int)
 {
-op_to arithopt[] = {
-	{ "+", op_add },
-	{ "-", op_sub },
-	{ "*", op_mul },
-	{ "/", op_div },
-	{ "%", op_mod },
-	{ NULL, NULL }
+	op_t ops[] = {
+		{"+", op_add},
+		{"-", op_sub},
+		{"*", op_mul},
+		{"/", op_div},
+		{"%", op_mod},
+		{NULL, NULL}
 	};
 	int i = 0;
 
-	for(;i < 5; i++)
+	while (i < 10)
 	{
-		if (strcmp(s, arithopt[i].opt) == 0)
-			return (arithopt[i].f);
+		if (s[0] == ops->op[i])
+			break;
+		i++;
 	}
-
-	return (NULL);
+	return (ops[i / 2].f);
 }
